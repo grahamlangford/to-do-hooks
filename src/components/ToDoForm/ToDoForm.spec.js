@@ -2,10 +2,8 @@ import React from 'react'
 import { render, fireEvent } from 'react-testing-library'
 import ToDoForm from '.'
 
-let defaultProps
 describe('ToDoForm.jsx', () => {
-  defaultProps = {}
-  const wrapper = (props = defaultProps) => render(<ToDoForm {...props} />)
+  const wrapper = () => render(<ToDoForm />)
 
   it('renders without crashing', () => {
     wrapper()

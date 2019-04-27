@@ -2,20 +2,17 @@
 import './bootstrap'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import 'typeface-roboto'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles'
-
 import './index.css'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark'
-  }
-})
+import theme from './theme'
+
+console.log(theme)
 
 ReactDOM.render(
   <>
