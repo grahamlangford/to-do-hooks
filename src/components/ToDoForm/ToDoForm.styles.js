@@ -1,4 +1,6 @@
-export default theme => ({
+import { makeStyles } from '@material-ui/styles'
+
+export default makeStyles(theme => ({
   form: {
     display: 'flex',
     backgroundColor: theme.palette ? theme.palette.background.paper : '',
@@ -11,4 +13,4 @@ export default theme => ({
   text: {
     width: '75%'
   }
-})
+}))

@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 
 import TodoContext from '../../context/todoContext'
+import ToDoList from '../ToDoList'
 import ToDoForm from '../ToDoForm'
 
 const App = () => {
@@ -13,9 +14,12 @@ const App = () => {
 
   const todoState = {
     todos,
-    addTodo: todo => setTodos([...todos, todo])
+    addTodo: todo => setTodos([...todos, todo]),
+    updateTodo: update =>
+      setTodos(todos.map(todo => (todo.id === update.id ? update : todo)))
   }
 
+  console.log(todos)
   return (
     <>
       <TodoContext.Provider value={todoState}>
@@ -24,6 +28,11 @@ const App = () => {
             <Typography variant="h6">To Do</Typography>
           </Toolbar>
         </AppBar>
+        <Grid container justify="center">
+          <Grid item xs={6}>
+            <ToDoList />
+          </Grid>
+        </Grid>
         <Grid container justify="center">
           <Grid item xs={6}>
             <ToDoForm />

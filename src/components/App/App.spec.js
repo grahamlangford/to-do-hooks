@@ -16,4 +16,11 @@ describe('App.jsx', () => {
     expect(appbar).toBeVisible()
     expect(appbar.textContent).toBe('To Do')
   })
+
+  it('has a form to add todos', () => {
+    const { getAllByTestId } = wrapper()
+    const todoList = getAllByTestId('to-do-list')
+
+    expect(todoList).toHaveLength(1)
+  })
 })

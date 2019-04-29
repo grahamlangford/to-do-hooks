@@ -1,20 +1,20 @@
 import React, { useState, useContext } from 'react'
-import PropTypes from 'prop-types'
+import shortid from 'shortid'
 
-import { withStyles } from '@material-ui/styles'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 import TodoContext from '../../context/todoContext'
-import styles from './ToDoForm.styles'
+import useStyles from './ToDoForm.styles'
 
-const ToDoForm = ({ classes }) => {
+const ToDoForm = () => {
+  const classes = useStyles()
   const [value, setValue] = useState('')
   const { addTodo } = useContext(TodoContext)
 
   const handleSubmit = e => {
     e.preventDefault()
-    addTodo(value)
+    addTodo({ id: shortid.generate(), value, checked: false })
     setValue('')
   }
 
@@ -40,12 +40,4 @@ const ToDoForm = ({ classes }) => {
   )
 }
 
-ToDoForm.propTypes = {
-  classes: PropTypes.object
-}
-
-ToDoForm.defaultProps = {
-  classes: { form: '', text: '' }
-}
-
-export default withStyles(styles)(ToDoForm)
+export default ToDoForm

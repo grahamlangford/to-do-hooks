@@ -5,6 +5,7 @@ export default createMuiTheme({
     type: 'dark'
   },
   typography: {
+    useNextVariants: true,
     fontSize: 16
   }
 })
