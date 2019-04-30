@@ -16,7 +16,8 @@ const App = () => {
     todos,
     addTodo: todo => setTodos([...todos, todo]),
     updateTodo: update =>
-      setTodos(todos.map(todo => (todo.id === update.id ? update : todo)))
+      setTodos(todos.map(todo => (todo.id === update.id ? update : todo))),
+    deleteTodo: id => setTodos(todos.filter(todo => todo.id !== id))
   }
 
   console.log(todos)
@@ -29,12 +30,12 @@ const App = () => {
           </Toolbar>
         </AppBar>
         <Grid container justify="center">
-          <Grid item xs={6}>
+          <Grid item xs={10} md={8} lg={6}>
             <ToDoList />
           </Grid>
         </Grid>
         <Grid container justify="center">
-          <Grid item xs={6}>
+          <Grid item xs={10} md={8} lg={6}>
             <ToDoForm />
           </Grid>
         </Grid>
