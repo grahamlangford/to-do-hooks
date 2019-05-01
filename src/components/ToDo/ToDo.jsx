@@ -37,7 +37,7 @@ const ToDo = ({ todo: { id, value, checked } }) => {
       />
       <ListItemText primary={value} />
       <ListItemSecondaryAction className={classes.delete}>
-        <IconButton onClick={handleDelete}>
+        <IconButton data-testid="delete" onClick={handleDelete}>
           <DeleteIcon className={classes.icon} />
         </IconButton>
       </ListItemSecondaryAction>

@@ -14,7 +14,7 @@ describe('App.jsx', () => {
     const appbar = getByTestId('app-bar')
 
     expect(appbar).toBeVisible()
-    expect(appbar.textContent).toBe('To Do')
+    expect(appbar.textContent).toMatch(/Todo/)
   })
 
   it('has a form to add todos', () => {

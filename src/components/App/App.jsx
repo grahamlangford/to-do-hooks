@@ -20,13 +20,12 @@ const App = () => {
     deleteTodo: id => setTodos(todos.filter(todo => todo.id !== id))
   }
 
-  console.log(todos)
   return (
     <>
       <TodoContext.Provider value={todoState}>
         <AppBar position="static" data-testid="app-bar">
           <Toolbar>
-            <Typography variant="h6">To Do</Typography>
+            <Typography variant="h6">Todo&mdash;Hooks</Typography>
           </Toolbar>
         </AppBar>
         <Grid container justify="center">

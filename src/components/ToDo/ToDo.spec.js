@@ -31,4 +31,11 @@ describe('ToDo.jsx', () => {
 
     expect(checkbox).toBeVisible()
   })
+
+  it('has a delete button', () => {
+    const { getByTestId } = wrapper()
+    const deleteButton = getByTestId('delete')
+
+    expect(deleteButton).toBeVisible()
+  })
 })
