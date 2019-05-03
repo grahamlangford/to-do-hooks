@@ -12,8 +12,6 @@ import * as serviceWorker from './serviceWorker'
 
 import theme from './theme'
 
-console.log(theme)
-
 ReactDOM.render(
   <>
     <MuiThemeProvider theme={theme}>

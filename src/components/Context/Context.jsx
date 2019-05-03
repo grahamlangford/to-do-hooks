@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 import Grid from '@material-ui/core/Grid'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 
 import TodoContext from '../../context/todoContext'
 import TodoList from '../ListContext'
@@ -29,13 +26,8 @@ const Context = () => {
 
   return (
     <>
-      <AppBar position="static" data-testid="app-bar">
-        <Toolbar>
-          <Typography variant="h6">Todo&mdash;Context</Typography>
-        </Toolbar>
-      </AppBar>
       <TodoContext.Provider value={todoState}>
-        <Grid container justify="center">
+        <Grid data-testid="context-component" container justify="center">
           <Grid item xs={10} md={8} lg={6}>
             <TodoList />
           </Grid>
