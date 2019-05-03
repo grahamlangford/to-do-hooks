@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import AppBar from '@material-ui/core/AppBar'
@@ -10,7 +10,14 @@ import TodoList from '../ListContext'
 import TodoForm from '../FormContext'
 
 const Context = () => {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(
+    JSON.parse(localStorage.getItem('todos-context')) || []
+  )
+
+  useEffect(
+    () => localStorage.setItem('todos-context', JSON.stringify(todos)),
+    [todos]
+  )
 
   const todoState = {
     todos,

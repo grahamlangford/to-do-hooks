@@ -11,7 +11,15 @@ import rootReducer from '../../reducers/index'
 import TodoList from '../ListRedux'
 import TodoForm from '../FormRedux'
 
-const store = createStore(rootReducer)
+const persistedState = localStorage.getItem('todos-redux')
+  ? JSON.parse(localStorage.getItem('todos-redux'))
+  : {}
+
+const store = createStore(rootReducer, persistedState)
+
+store.subscribe(() => {
+  localStorage.setItem('todos-redux', JSON.stringify(store.getState()))
+})
 
 const Redux = () => {
   return (
