@@ -1,4 +1,5 @@
-import React, { useContext } from 'react'
+import React, { useCallback } from 'react'
+import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import ListItem from '@material-ui/core/ListItem'
@@ -9,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { makeStyles } from '@material-ui/styles'
 
-import TodoContext from '../../context/todoContext'
+import { updateTodo as updateRedux, deleteById } from '../../actions/todos'
 
 const useStyles = makeStyles(theme => ({
   delete: { marginRight: theme.spacing ? theme.spacing.unit * 2 : 0 },
@@ -17,16 +18,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ToDo = ({ todo: { id, value, checked } }) => {
-  const { updateTodo, deleteTodo } = useContext(TodoContext)
   const classes = useStyles()
 
-  const handleChecked = () => {
-    updateTodo({ id, value, checked: !checked })
-  }
-
-  const handleDelete = () => {
-    deleteTodo(id)
-  }
+  const dispatch = useDispatch()
+  const handleChecked = useCallback(() =>
+    dispatch(updateRedux({ id, value, checked: !checked }), [checked])
+  )
+  const handleDelete = useCallback(() => dispatch(deleteById(id)), [])
 
   return (
     <ListItem key={`todo-${id}`}>

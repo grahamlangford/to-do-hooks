@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, fireEvent } from 'react-testing-library'
-import ToDoForm from '.'
+import FormContext from '.'
 
-describe('ToDoForm.jsx', () => {
-  const wrapper = () => render(<ToDoForm />)
+describe('FormContext.jsx', () => {
+  const wrapper = () => render(<FormContext />)
 
   it('renders without crashing', () => {
     wrapper()
@@ -11,7 +11,7 @@ describe('ToDoForm.jsx', () => {
 
   it('renders a form', () => {
     const { getByTestId } = wrapper()
-    const form = getByTestId('to-do-form')
+    const form = getByTestId('to-do-form-context')
 
     expect(form).toBeVisible()
   })
@@ -29,7 +29,7 @@ describe('ToDoForm.jsx', () => {
 
     fireEvent.change(textField, { target: { value: 'do things' } })
 
-    rerender(<ToDoForm />)
+    rerender(<FormContext />)
     expect(textField.value).toBe('do things')
   })
 })

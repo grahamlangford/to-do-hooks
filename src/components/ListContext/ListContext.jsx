@@ -1,19 +1,20 @@
 import React, { useContext } from 'react'
 
 import List from '@material-ui/core/List'
-import ToDo from '../ToDo'
+import Todo from '../TodoContext'
 
 import TodoContext from '../../context/todoContext'
 
-const ToDoList = () => {
+const TodoList = () => {
   const { todos } = useContext(TodoContext)
+
   return (
     <List data-testid="to-do-list">
       {todos.map(todo => (
-        <ToDo key={todo.id} todo={todo} />
+        <Todo key={todo.id} todo={todo} />
       ))}
     </List>
   )
 }
 
-export default ToDoList
+export default TodoList

@@ -2,9 +2,9 @@ import React from 'react'
 import { render } from 'react-testing-library'
 import shortid from 'shortid'
 
-import ToDo from '.'
+import Todo from '.'
 
-describe('ToDo.jsx', () => {
+describe('TodoContext.jsx', () => {
   const defaultProps = {
     todo: {
       id: shortid.generate(),
@@ -12,7 +12,7 @@ describe('ToDo.jsx', () => {
       checked: false
     }
   }
-  const wrapper = (props = defaultProps) => render(<ToDo {...props} />)
+  const wrapper = (props = defaultProps) => render(<Todo {...props} />)
 
   it('renders without crashing', () => {
     wrapper()
