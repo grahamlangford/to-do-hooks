@@ -33,7 +33,12 @@ const TodoForm = () => {
         variant="outlined"
         className={classes.text}
       />
-      <Button type="submit" variant="contained" color="primary">
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        data-testid="submit-button"
+      >
         Add
       </Button>
     </form>

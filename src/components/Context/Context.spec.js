@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from 'react-testing-library'
+import { render, fireEvent } from 'react-testing-library'
 import Context from '.'
 
 describe('Context.jsx', () => {
@@ -22,5 +22,52 @@ describe('Context.jsx', () => {
     const todoList = getAllByTestId('to-do-list')
 
     expect(todoList).toHaveLength(1)
+  })
+
+  it('inputing a todo and clicking add adds the todo to the list', () => {
+    const { getByLabelText, getByTestId, getByText } = wrapper()
+    const textField = getByLabelText('Add Todo')
+
+    fireEvent.change(textField, { target: { value: 'do things' } })
+
+    const submit = getByTestId('submit-button')
+    fireEvent.click(submit)
+
+    const listItem = getByText('do things')
+
+    expect(listItem).toBeVisible()
+  })
+
+  it('user can mark a todo done', () => {
+    const { getByLabelText, getByTestId } = wrapper()
+    const textField = getByLabelText('Add Todo')
+    fireEvent.change(textField, { target: { value: 'do things' } })
+    const submit = getByTestId('submit-button')
+    fireEvent.click(submit)
+
+    const checkbox = getByTestId('checkbox').querySelector(
+      'input[type="checkbox"]'
+    )
+    fireEvent.click(checkbox)
+
+    expect(checkbox.checked).toBe(true)
+  })
+
+  it('user can delete a todo', () => {
+    const { getByLabelText, getByTestId, getAllByText } = wrapper()
+    const textField = getByLabelText('Add Todo')
+    const submit = getByTestId('submit-button')
+
+    fireEvent.change(textField, { target: { value: 'do things' } })
+    fireEvent.click(submit)
+
+    fireEvent.change(textField, { target: { value: 'do other things' } })
+    fireEvent.click(submit)
+
+    const deleteTodo = getByTestId('delete')
+    fireEvent.click(deleteTodo)
+
+    const listItems = getAllByText(/things/)
+    expect(listItems).toHaveLength(1)
   })
 })
