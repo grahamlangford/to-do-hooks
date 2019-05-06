@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useMemo } from 'react'
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useCallback
+} from 'react'
 
 const TodoContext = createContext()
 
@@ -10,12 +16,18 @@ export const useTodo = () => {
   }
 
   const [todos, setTodos] = context
-  const addTodo = todo => setTodos([...todos, todo])
-  const updateTodo = update =>
-    setTodos(todos.map(todo => (todo.id === update.id ? update : todo)))
-  const deleteTodo = id => setTodos(todos.filter(todo => todo.id !== id))
+  const addTodo = useCallback(todo => setTodos([...todos, todo]), [todos])
+  const updateTodo = useCallback(
+    update =>
+      setTodos(todos.map(todo => (todo.id === update.id ? update : todo))),
+    [todos]
+  )
+  const deleteTodo = useCallback(
+    id => setTodos(todos.filter(todo => todo.id !== id)),
+    [todos]
+  )
 
-  return { todos, setTodos, addTodo, updateTodo, deleteTodo }
+  return { todos, addTodo, updateTodo, deleteTodo }
 }
 
 export const TodoProvider = props => {
