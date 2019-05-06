@@ -1,12 +1,12 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import List from '@material-ui/core/List'
 import Todo from '../TodoContext'
 
-import TodoContext from '../../context/todoContext'
+import { useTodo } from '../../context/todoContext'
 
 const TodoList = () => {
-  const { todos } = useContext(TodoContext)
+  const { todos } = useTodo()
 
   return (
     <List data-testid="to-do-list">

@@ -22,7 +22,7 @@ const ToDo = ({ todo: { id, value, checked } }) => {
 
   const dispatch = useDispatch()
   const handleChecked = useCallback(() =>
-    dispatch(updateRedux({ id, value, checked: !checked }), [checked])
+    dispatch(updateRedux({ id, value, checked: !checked }), [checked, dispatch])
   )
   const handleDelete = useCallback(() => dispatch(deleteById(id)), [])
 

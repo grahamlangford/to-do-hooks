@@ -1,17 +1,17 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import shortid from 'shortid'
 
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
-import TodoContext from '../../context/todoContext'
+import { useTodo } from '../../context/todoContext'
 import useStyles from './FormContext.styles'
 
 const TodoForm = () => {
   const classes = useStyles()
   const [value, setValue] = useState('')
 
-  const { addTodo } = useContext(TodoContext)
+  const { addTodo } = useTodo()
   const handleSubmit = e => {
     e.preventDefault()
     addTodo({ id: shortid.generate(), value, checked: false })

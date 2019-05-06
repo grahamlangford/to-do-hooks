@@ -1,9 +1,15 @@
 import React from 'react'
 import { render, fireEvent } from 'react-testing-library'
 import Context from '.'
+import { TodoProvider } from '../../context/todoContext'
 
 describe('Context.jsx', () => {
-  const wrapper = () => render(<Context />)
+  const wrapper = () =>
+    render(
+      <TodoProvider>
+        <Context />
+      </TodoProvider>
+    )
 
   it('renders without crashing', () => {
     wrapper()

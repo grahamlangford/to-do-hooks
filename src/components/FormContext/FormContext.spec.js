@@ -1,9 +1,15 @@
 import React from 'react'
 import { render, fireEvent } from 'react-testing-library'
 import FormContext from '.'
+import { TodoProvider } from '../../context/todoContext.jsx'
 
 describe('FormContext.jsx', () => {
-  const wrapper = () => render(<FormContext />)
+  const wrapper = () =>
+    render(
+      <TodoProvider>
+        <FormContext />
+      </TodoProvider>
+    )
 
   it('renders without crashing', () => {
     wrapper()
@@ -29,7 +35,11 @@ describe('FormContext.jsx', () => {
 
     fireEvent.change(textField, { target: { value: 'do things' } })
 
-    rerender(<FormContext />)
+    rerender(
+      <TodoProvider>
+        <FormContext />
+      </TodoProvider>
+    )
     expect(textField.value).toBe('do things')
   })
 })

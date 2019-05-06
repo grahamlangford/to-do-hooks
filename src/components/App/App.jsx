@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/styles'
 
 import Context from '../Context'
 import Redux from '../Redux'
+import { TodoProvider } from '../../context/todoContext'
 
 const useStyles = makeStyles({
   grow: { flexGrow: 1 }
@@ -47,7 +48,13 @@ const App = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-      {isContext ? <Context /> : <Redux />}
+      {isContext ? (
+        <TodoProvider>
+          <Context />
+        </TodoProvider>
+      ) : (
+        <Redux />
+      )}
     </>
   )
 }

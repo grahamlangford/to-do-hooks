@@ -19,7 +19,7 @@ const ToDoForm = () => {
         type: todoActions.ADD_TODO,
         payload: { id: shortid.generate(), value, checked: false }
       }),
-    [value]
+    [value, dispatch]
   )
   const handleSubmit = e => {
     e.preventDefault()

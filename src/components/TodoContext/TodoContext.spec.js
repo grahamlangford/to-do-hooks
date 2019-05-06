@@ -3,6 +3,7 @@ import { render } from 'react-testing-library'
 import shortid from 'shortid'
 
 import Todo from '.'
+import { TodoProvider } from '../../context/todoContext'
 
 describe('TodoContext.jsx', () => {
   const defaultProps = {
@@ -12,7 +13,12 @@ describe('TodoContext.jsx', () => {
       checked: false
     }
   }
-  const wrapper = (props = defaultProps) => render(<Todo {...props} />)
+  const wrapper = (props = defaultProps) =>
+    render(
+      <TodoProvider>
+        <Todo {...props} />
+      </TodoProvider>
+    )
 
   it('renders without crashing', () => {
     wrapper()

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import ListItem from '@material-ui/core/ListItem'
@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton'
 import DeleteIcon from '@material-ui/icons/Delete'
 import { makeStyles } from '@material-ui/styles'
 
-import TodoContext from '../../context/todoContext'
+import { useTodo } from '../../context/todoContext'
 
 const useStyles = makeStyles(theme => ({
   delete: { marginRight: theme.spacing ? theme.spacing.unit * 2 : 0 },
@@ -19,17 +19,11 @@ const useStyles = makeStyles(theme => ({
 const ToDo = ({ todo: { id, value, checked } }) => {
   const classes = useStyles()
 
-  const { updateTodo: updateContext, deleteTodo: deleteContext } = useContext(
-    TodoContext
-  )
+  const { updateTodo, deleteTodo } = useTodo()
 
-  const handleChecked = () => {
-    updateContext({ id, value, checked: !checked })
-  }
+  const handleChecked = () => updateTodo({ id, value, checked: !checked })
 
-  const handleDelete = () => {
-    deleteContext(id)
-  }
+  const handleDelete = () => deleteTodo(id)
 
   return (
     <ListItem key={`todo-${id}`}>
